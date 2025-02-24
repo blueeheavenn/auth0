@@ -1,15 +1,11 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
-import Home from './Home';
-
+import HookForm from './HookForm';
 function App() {
-  return (
-    <>
-      <Home />
-    </>
-  );
+    return (
+        <>
+            <HookForm/>
+        </>
+    );
 }
 
 export default App;
