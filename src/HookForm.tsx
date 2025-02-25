@@ -4,11 +4,11 @@ import {zodResolver} from "@hookform/resolvers/zod"
 
 
 const HookForm = () => {
-    const {register, handleSubmit, formState: {
+    const {register, handleSubmit,  formState: {
             errors
-        }} = useForm < FormValues > ({resolver: zodResolver(FormSchemma)})
+        }} = useForm < FormValues > ({resolver: zodResolver(FormSchemma), mode: "onChange",  defaultValues: { name: "", pwd: "", hobbies: "" }  })
 
-    const submit = () => ''
+    const submit = () => console.log()
     return (
         <div>
             <form onSubmit={
@@ -17,7 +17,7 @@ const HookForm = () => {
 
                 <div>
                     <label htmlFor='name'>Name:
-                                                                        < input type = "text" id = "name" {
+                         < input type = "text" id = "name" {
                         ...register('name')
                     }
                        
@@ -32,7 +32,7 @@ const HookForm = () => {
 
                 <div>
                     <label htmlFor='pwd'>Password:
-                                                                                                                                                                                                                                                                                                                        < input type="text" id="pwd" {
+                    < input type="text" id="pwd" {
                         ...register('pwd')
                     }
                         />
@@ -51,24 +51,26 @@ const HookForm = () => {
                 <div>
 
                     <label htmlFor='hobbies'>Hobbies:
-                                                                                                                                                                                                                                                                                                                        < input type="text" id="hobbies" {
+                < input type="text" id="hobbies" {
                         ...register('hobbies')
                     }
                         />
 
                     </label>
                       {errors.hobbies && errors.hobbies.message}
+               
                 </div>
                 <p></p>
                 <p></p>
                 <div>
-                    <button type="submit">
+                    <button type="submit" disabled={!isValid}>
                         Submit form
                     </button>
+                
                 </div>
-
+                 
             </form>
-
+           {/* {isValid.toString()} */}
         </div>
 
 
