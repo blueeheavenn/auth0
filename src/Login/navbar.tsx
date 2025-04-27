@@ -1,28 +1,19 @@
-import { useAuth0, RedirectLoginOptions, AppState } from '@auth0/auth0-react';
-
+// src/components/Navbar.tsx
+import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const { loginWithRedirect, isAuthenticated,  } = useAuth0();
- interface options extends RedirectLoginOptions < AppState > {
-     screen_hint: string   
- }
-    const options: options = {
-  screen_hint: 'signup',
-  // other options...
-};
+  const { isAuthenticated } = useAuth0();
+
   return (
     <nav>
-    {!isAuthenticated ? (
-              <>
-          <button onClick={() => loginWithRedirect(options)}>
-            Sign Up 
-          </button>
-          <button onClick={() => loginWithRedirect()}>
-            Log In
-          </button>
+      {!isAuthenticated ? (
+        <>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Login</Link>
         </>
       ) : (
-        <p>Welcome back!</p>
+        <Link to="/profile">Profile</Link>
       )}
     </nav>
   );

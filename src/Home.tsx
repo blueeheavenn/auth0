@@ -1,10 +1,8 @@
-const Home = () => {
-    return (
-        <div>
-            <h1>Hello, React!</h1>
-            <p></p>
-        </div>
-    );
-};
-
-export default Home;
+export default function Home() {
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>Welcome to the App</h1>
+      <p>Use the navigation above</p>
+    </div>
+  );
+}
