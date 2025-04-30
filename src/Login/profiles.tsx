@@ -1,27 +1,22 @@
-// src/components/Profile.tsx
-import { useAuth0 } from '@auth0/auth0-react';
+import { useLocation } from 'react-router-dom';
+import { logout } from './AuthService';
 
 const Profile = () => {
-  const { user, isLoading, logout } = useAuth0();
-
-  if (isLoading) return <div>Loading...</div>;
+  const { state } = useLocation();
+  const profile = state?.profile;
 
   return (
     <div className="profile">
-      {user && (
+      {profile && (
         <>
-          <h1>Welcome, {user.nickname || user.name || user.email}</h1>
-          {user.email && <p>Email: {user.email}</p>}
-          {user.nickname && <p>Username: {user.nickname}</p>}
-          <button onClick={() => logout({ 
-            logoutParams: { returnTo: window.location.origin } 
-          })}>
-            Log Out
-          </button>
+          <h1>Welcome, {profile.nickname || profile.name || profile.email}</h1>
+          {profile.email && <p>Email: {profile.email}</p>}
+          {profile.nickname && <p>Username: {profile.nickname}</p>}
+          <button onClick={logout}>Log Out</button>
         </>
       )}
     </div>
   );
 };
 
-export default Profile;
+export default Profile
